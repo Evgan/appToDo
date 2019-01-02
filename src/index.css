@@ -1,6 +1,6 @@
 body {
   padding: 50px;
-  background-color: #66CCFF;
+  background-color: #66CC;
   font-family: sans-serif;
 }
 
@@ -70,4 +70,21 @@ ul.theList {
 .todoListMain .theList li:hover {
   background-color: pink;
   cursor: pointer;
+}
+
+
+
+
+.labelCB{
+    color: white;
+    font-size: 12x;
+}
+
+.labelCB-t{
+    text-decoration: line-through;
+}
+
+.imgDelete{
+    width: 15px;
+    height: 15px;
 }
