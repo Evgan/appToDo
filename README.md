@@ -2,18 +2,12 @@
  по инструкции:
  https://hackernoon.com/create-a-simple-todo-app-in-react-9bd29054566b
  
- 
+ # От себя добавил:
  ============================================================================
- 
- The build folder is ready to be deployed.
- You may serve it with a static server:
- 
-   npm install -g serve
-   serve -s build
- 
- Find out more about deployment here:
- 
-   http://bit.ly/CRA-deploy
+1) Чекбокс выполненной задачи
+2) Кнопка Скрыть "Выполненные"
+3) Кнопка "Удалить" задачу
 
 Что необходимо ещё сделать:
  ============================================================================
+1) Редактирование текста задачи
