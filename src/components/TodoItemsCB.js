@@ -6,22 +6,21 @@ class TodoItemsCB extends Component {
         // Сперва проверим не нажатали кнопка "Скрыть выполненные", если да, то не генирируем отмеченные ЧБ
        if(this.props.doneStatus === '' || this.props.doneStatus === 'show' || (this.props.doneStatus === 'hide' && item.done === false)){
           const classNameLabel = item.done ? 'labelCB labelCB-t' : 'labelCB';
-           return <div key={item.key}>
-               <input type="checkbox"
-                      itemID={item.key}
-                      defaultChecked={item.done}
-                      value={item.text}
-                      onClick={this.onClick}
-               />
-               <label className={classNameLabel}>{item.text}</label>
-               <button>
-                   <img src={iconDelete}
-                        alt=''
-                        className='imgDelete'
-                        onClick={this.onClickDelete}
-                        itemID={item.key}/>
-               </button>
-           </div>
+           return <div className="TodoItemCB" key={item.key}>
+                       <input type="checkbox"
+                              itemID={item.key}
+                              defaultChecked={item.done}
+                              value={item.text}
+                              onClick={this.onClick}
+                              id={item.key}
+                       />
+                       <label for={item.key} className={classNameLabel}>{item.text}</label>
+                           <img src={iconDelete}
+                                alt=''
+                                className='imgDelete'
+                                onClick={this.onClickDelete}
+                                itemID={item.key}/>
+                   </div>
         }
         return '';
     }
@@ -35,7 +34,7 @@ class TodoItemsCB extends Component {
         const todoEntries = this.props.entries;
         const listCB = todoEntries.map(this.createCB);
         return (
-            <div>
+            <div className='theList'>
                 {listCB}
             </div>
         )
