@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 class ButtonHideShowDone extends Component {
     constructor(){
         super();
@@ -7,6 +8,9 @@ class ButtonHideShowDone extends Component {
             show: {action: 'show', label: 'Показать выполненные', nextState: 'hide'}
         }
         this.state = this.varsState.hide;
+    }
+    static propTypes = {
+        hideShowDone: PropTypes.func.isRequired
     }
     handleClick2=e=>{
         this.props.hideShowDone(this.state.action);

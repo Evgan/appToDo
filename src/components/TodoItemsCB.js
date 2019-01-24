@@ -1,20 +1,31 @@
 import React, {Component} from 'react';
 import iconDelete from './img/icon_delete.png';
+import PropTypes from 'prop-types';
 
 class TodoItemsCB extends Component {
+
+    static propTypes = {
+        entries: PropTypes.array.isRequired,
+        handleDone: PropTypes.func.isRequired,
+        handleDelete: PropTypes.func.isRequired,
+        doneStatus: PropTypes.string.isRequired,
+    }
     createCB = (item) =>{
         // Сперва проверим не нажатали кнопка "Скрыть выполненные", если да, то не генирируем отмеченные ЧБ
        if(this.props.doneStatus === '' || this.props.doneStatus === 'show' || (this.props.doneStatus === 'hide' && item.done === false)){
           const classNameLabel = item.done ? 'labelCB labelCB-t' : 'labelCB';
            return <div className="TodoItemCB" key={item.key}>
-                       <input type="checkbox"
+                    <label className={classNameLabel}>
+                       <input
+                           type="checkbox"
                               itemID={item.key}
                               defaultChecked={item.done}
                               value={item.text}
                               onClick={this.onClick}
                               id={item.key}
-                       />
-                       <label for={item.key} className={classNameLabel}>{item.text}</label>
+                           />
+                            {item.text}
+                       </label>
                            <img src={iconDelete}
                                 alt=''
                                 className='imgDelete'
@@ -32,7 +43,7 @@ class TodoItemsCB extends Component {
     }
     render() {
         const todoEntries = this.props.entries;
-        const listCB = todoEntries.map(this.createCB);
+                const listCB = todoEntries.map(this.createCB);
         return (
             <div className='theList'>
                 {listCB}

@@ -1,7 +1,15 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types';
 class TodoList extends Component {
     componentDidUpdate(){
         this.props.inputElement.current.focus();
+    }
+
+    static propTypes = {
+        addItem: PropTypes.func.isRequired,
+        inputElement: PropTypes.object.isRequired,
+        currentItem: PropTypes.object.isRequired,
+        handleInput: PropTypes.func.isRequired,
     }
 
     render() {

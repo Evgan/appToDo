@@ -12,7 +12,7 @@ class App extends Component {
         this.state = {
             items: [],
             currentItem: {text:'', key: '', done: ''},
-            doneStatus: ''
+            doneStatus: '',
         }
     }
     hideShowDone = e =>{
