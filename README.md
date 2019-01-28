@@ -30,7 +30,16 @@
  Working directory: $ProjectFileDir$
  Auto-save edited files to trigger the watcher: Uncheck to reformat on Save only.
 
-
+ # Redux
+ ============================================================================
+В рамках данного тестового проекта Redux избыточен, но для изучения его применил
+документация по Redux:
+https://redux.js.org/
+Полезность:
+https://maxfarseer.gitbooks.io/redux-course-ru-v2/content/sozdanie/tochka-vhoda.html
+Установка
+npm i redux react-redux --save
+npm install redux-thunk --save //для асихронных actions
 
 
 Что необходимо ещё сделать:

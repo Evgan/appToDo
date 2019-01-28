@@ -50,6 +50,7 @@ class TodoItemsCB extends Component {
   }
 
   render() {
+    // console.log(' >> TodoItemsCB.js > render()')
     const todoEntries = this.props.entries
     const listCB = todoEntries.map(this.createCB)
     return <div className="theList">{listCB}</div>
