@@ -29,6 +29,11 @@
  Output paths to refresh: $FilePathRelativeToProjectRoot$
  Working directory: $ProjectFileDir$
  Auto-save edited files to trigger the watcher: Uncheck to reformat on Save only.
+ 
+# Логгер для отслеживания actions и состояний store
+============================================================================
+ npm i -D redux-logger
+ 
 
  # Redux
  ============================================================================

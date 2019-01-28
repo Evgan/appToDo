@@ -1,41 +1,39 @@
 import { INPUT_CH } from '../actions/ChangeInputAction'
-import { TASK_DID_ADD, TASK_WILL_ADD } from '../actions/AddTaskAction'
-import { DELETE_ITEM, HANDLE_DONE } from '../actions/DoneActions'
+import { TASK_ADD } from '../actions/AddTaskAction'
+import {
+  ITEM_DELETE,
+  HANDLE_DONE,
+  ITEM_WIll_DELETE,
+} from '../actions/DoneActions'
+
+const initialItem = { text: '', key: '', done: '', delayDelete: '' }
+
 export const initialState = {
   items: [],
-  currentItem: { text: '', key: '1', done: '' },
-  itemWillAdd: '',
+  currentItem: initialItem,
 }
 export function itemsReducer(state = initialState, action) {
   switch (action.type) {
-    case TASK_WILL_ADD:
-    case TASK_DID_ADD:
+    case TASK_ADD:
       const newItem = state.currentItem
       if (newItem.text !== '') {
-        //
-        if (action.type === TASK_WILL_ADD) {
-          return {
-            ...state,
-            itemWillAdd:
-              'Задача "' +
-              newItem.text +
-              '" бует добавлена через 5 секунд.(Учим thunk - для ассинхронных actions)',
-          }
-        } else {
-          const items = [...state.items, newItem]
-          return {
-            ...state,
-            items: items,
-            currentItem: { text: '', key: '1', done: '' },
-            itemWillAdd: '',
-          }
+        const items = [...state.items, newItem]
+        return {
+          ...state,
+          items: items,
+          currentItem: initialItem,
+          itemWillAdd: '',
         }
       }
       return state
 
     case INPUT_CH:
       const itemText = action.payload
-      const currentItem = { text: itemText, key: Date.now(), done: false }
+      const currentItem = {
+        ...state.currentItem,
+        text: itemText,
+        key: Date.now(),
+      }
       return { ...state, currentItem: currentItem }
 
     case HANDLE_DONE:
@@ -49,12 +47,22 @@ export function itemsReducer(state = initialState, action) {
       })
       return { ...state, items: items }
 
-    case DELETE_ITEM:
+    case ITEM_WIll_DELETE:
+      const itemIdWillDelete = action.payload.itemId
+      const itemsAfterWillDelete = state.items.map(value => {
+        if (value.key.toString() === itemIdWillDelete.toString()) {
+          value.delayDelete = action.payload.delay / 1000
+        }
+        return value
+      })
+      return { ...state, items: itemsAfterWillDelete }
+
+    case ITEM_DELETE:
       const itemIdDelete = action.payload
-      const itemsAfteDeleteItem = state.items.filter(value => {
+      const itemsAfterDeleteItem = state.items.filter(value => {
         return value.key.toString() !== itemIdDelete.toString()
       })
-      return { ...state, items: itemsAfteDeleteItem }
+      return { ...state, items: itemsAfterDeleteItem }
 
     default:
       return state

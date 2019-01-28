@@ -21,6 +21,7 @@ class TodoList extends Component {
   }
 
   render() {
+    console.log('>> TodoList.js > render()')
     return (
       <div className="todoListMain">
         <div className="header">

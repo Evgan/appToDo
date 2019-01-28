@@ -5,8 +5,8 @@ import PropTypes from 'prop-types'
 class TodoItemsCB extends Component {
   static propTypes = {
     entries: PropTypes.array.isRequired,
-    handleDone: PropTypes.func.isRequired,
-    handleDelete: PropTypes.func.isRequired,
+    handleDoneAction: PropTypes.func.isRequired,
+    deleteItemAction: PropTypes.func.isRequired,
     doneStatus: PropTypes.string.isRequired,
   }
   createCB = item => {
@@ -17,6 +17,7 @@ class TodoItemsCB extends Component {
       (this.props.doneStatus === 'hide' && item.done === false)
     ) {
       const classNameLabel = item.done ? 'labelCB labelCB-t' : 'labelCB'
+      console.log(item.delayDelete)
       return (
         <div className="TodoItemCB" key={item.key}>
           <label className={classNameLabel}>
@@ -30,27 +31,35 @@ class TodoItemsCB extends Component {
             />
             {item.text}
           </label>
-          <img
-            src={iconDelete}
-            alt=""
-            className="imgDelete"
-            onClick={this.onClickDelete}
-            itemID={item.key}
-          />
+          {item.delayDelete === '' ? (
+            <img
+              src={iconDelete}
+              alt=""
+              className="imgDelete"
+              onClick={this.onClickDelete}
+              itemID={item.key}
+            />
+          ) : (
+            <div>
+              <small style={{ color: 'red' }}>
+                Задача будет удалена через {item.delayDelete} секунды
+              </small>
+            </div>
+          )}
         </div>
       )
     }
     return ''
   }
   onClickDelete = e => {
-    this.props.handleDelete(e)
+    this.props.deleteItemAction(e)
   }
   onClick = e => {
-    this.props.handleDone(e)
+    this.props.handleDoneAction(e)
   }
 
   render() {
-    // console.log(' >> TodoItemsCB.js > render()')
+    console.log(' >> TodoItemsCB.js > render()')
     const todoEntries = this.props.entries
     const listCB = todoEntries.map(this.createCB)
     return <div className="theList">{listCB}</div>

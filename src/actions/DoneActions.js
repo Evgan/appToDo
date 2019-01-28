@@ -1,9 +1,13 @@
 // ВОПРОС: В одном Action файле должет быть СТРОГО один Action?
 // Или это не регламентируется и можно впихнуть несколько?
 
+// В рамках изучения с помощью setTimeout имитируеум Асинхронный actioins
+
 export const HIDE_SHOW_DONE = 'HIDE_SHOW_DONE'
 export const HANDLE_DONE = 'HANDLE_DONE'
-export const DELETE_ITEM = 'DELETE_ITEM'
+
+export const ITEM_WIll_DELETE = 'ITEM_WIll_DELETE'
+export const ITEM_DELETE = 'ITEM_DELETE'
 
 export function hideShowDone(e) {
   return {
@@ -20,8 +24,19 @@ export function handleDone(e) {
 }
 
 export function deleteItem(e) {
-  return {
-    type: DELETE_ITEM,
-    payload: e.target.getAttribute('itemId'),
+  const itemId = e.target.getAttribute('itemId')
+  const delay = 3000
+  return dispatch => {
+    dispatch({
+      type: ITEM_WIll_DELETE,
+      payload: { itemId: itemId, delay: delay },
+    })
+
+    setTimeout(() => {
+      dispatch({
+        type: ITEM_DELETE,
+        payload: itemId,
+      })
+    }, delay)
   }
 }

@@ -12,17 +12,12 @@ class App extends Component {
   constructor() {
     super()
     this.inputElement = React.createRef()
-    this.state = {
-      items: [],
-      currentItem: { text: '', key: '', done: '' },
-      doneStatus: '',
-    }
   }
 
   render() {
-    // console.log(' >> App.js > render()')
+    console.log('>> ButtonHideShowDone.js > render()')
 
-    const { currentItem, items, itemWillAdd } = this.props.items
+    const { currentItem, items } = this.props.items
     const { statusBtnHideShowDone, doneStatus } = this.props.done
     const {
       hideShowDoneAction,
@@ -35,7 +30,7 @@ class App extends Component {
       <ButtonHideShowDone
         //hideShowDone={this.hideShowDone}
         statusBtnHideShowDone={statusBtnHideShowDone}
-        hideShowDone={hideShowDoneAction}
+        hideShowDoneAction={hideShowDoneAction}
       />
     ) : (
       ''
@@ -49,12 +44,10 @@ class App extends Component {
           changeInput={this.props.changeInputAction}
           currentItem={currentItem}
         />
-        {itemWillAdd !== '' ? <small>{itemWillAdd}</small> : ''}
-
         <TodoItemsCB
           entries={items}
-          handleDone={handleDoneAction}
-          handleDelete={deleteItemAction}
+          handleDoneAction={handleDoneAction}
+          deleteItemAction={deleteItemAction}
           doneStatus={doneStatus}
         />
         {divButtonHideShowDone}
@@ -64,7 +57,6 @@ class App extends Component {
 }
 
 const mapStateToProps = store => {
-  // console.log(store)
   return {
     items: store.items,
     done: store.done,
