@@ -1,20 +1,24 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 class TodoList extends Component {
+  constructor() {
+    super()
+    this.inputElement = React.createRef()
+  }
+
   componentDidUpdate() {
-    this.props.inputElement.current.focus()
+    this.inputElement.current.focus()
   }
 
   static propTypes = {
-    addItem: PropTypes.func.isRequired,
-    inputElement: PropTypes.object.isRequired,
+    addTask: PropTypes.func.isRequired,
     currentItem: PropTypes.object.isRequired,
     changeInput: PropTypes.func.isRequired,
   }
 
   addItem = e => {
     e.preventDefault() // нужно для того что бы страница не презагружалась при нажатии на кнопку addTask
-    this.props.addItem(e)
+    this.props.addTask(e)
   }
   changeInput = e => {
     this.props.changeInput(e.target.value)
@@ -28,7 +32,7 @@ class TodoList extends Component {
           <form onSubmit={this.addItem}>
             <input
               placeholder="Task"
-              ref={this.props.inputElement}
+              ref={this.inputElement}
               value={this.props.currentItem.text}
               onChange={this.changeInput}
             />

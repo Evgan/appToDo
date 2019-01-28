@@ -17,7 +17,6 @@ class TodoItemsCB extends Component {
       (this.props.doneStatus === 'hide' && item.done === false)
     ) {
       const classNameLabel = item.done ? 'labelCB labelCB-t' : 'labelCB'
-      console.log(item.delayDelete)
       return (
         <div className="TodoItemCB" key={item.key}>
           <label className={classNameLabel}>
