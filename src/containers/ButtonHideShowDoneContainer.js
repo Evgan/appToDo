@@ -4,7 +4,6 @@ import { connect } from 'react-redux'
 import ButtonHideShowDone from '../components/ButtonHideShowDone'
 class ButtonHideShowDoneContainer extends Component {
   render() {
-    console.log('>> ButtonHideShowDoneContainer.js > render()')
     // Кнопка "Скрыть/Показать выполненные" будет появлятся только тогда когда имеется ходябы один отмечанный ЧБ:
     const divButtonHideShowDone = this.props.items.items.some(
       value => value.done

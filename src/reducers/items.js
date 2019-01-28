@@ -1,40 +1,28 @@
-import { INPUT_CH } from '../actions/ChangeInputAction'
 import { TASK_ADD } from '../actions/AddTaskAction'
 import {
   ITEM_DELETE,
   HANDLE_DONE,
   ITEM_WIll_DELETE,
 } from '../actions/DoneActions'
-
-const initialItem = { text: '', key: '', done: '', delayDelete: '' }
+import { getCurrentItem } from './currentItem'
 
 export const initialState = {
   items: [],
-  currentItem: initialItem,
 }
 export function itemsReducer(state = initialState, action) {
   switch (action.type) {
     case TASK_ADD:
-      const newItem = state.currentItem
+      //ВОПРОС: Ну вот ХЗ можноли такделать: обменеваться данными между редюсерами? И вот таким способом?
+      const newItem = getCurrentItem()
+
       if (newItem.text !== '') {
         const items = [...state.items, newItem]
         return {
           ...state,
           items: items,
-          currentItem: initialItem,
-          itemWillAdd: '',
         }
       }
       return state
-
-    case INPUT_CH:
-      const itemText = action.payload
-      const currentItem = {
-        ...state.currentItem,
-        text: itemText,
-        key: Date.now(),
-      }
-      return { ...state, currentItem: currentItem }
 
     case HANDLE_DONE:
       // Вызывается при нажатии на ЧБ задач

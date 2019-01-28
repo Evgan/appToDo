@@ -9,7 +9,6 @@ class ButtonHideShowDone extends Component {
     this.props.hideShowDoneAction(this.props.statusBtnHideShowDone)
   }
   render() {
-    console.log('>> ButtonHideShowDone.js > render()')
     const label = this.props.statusBtnHideShowDone.label
     return <button onClick={this.handleClick2}>{label}</button>
   }

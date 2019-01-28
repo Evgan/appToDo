@@ -5,13 +5,12 @@ import { connect } from 'react-redux'
 import TodoList from '../components/TodoList'
 class TodoListContainer extends Component {
   render() {
-    console.log('>> TodoListContainer.js > render()')
     return (
       <TodoList
         addTask={this.props.addTaskAction}
         inputElement={this.inputElement}
         changeInput={this.props.changeInputAction}
-        currentItem={this.props.items.currentItem}
+        currentItem={this.props.currentItem.currentItem}
       />
     )
   }
@@ -19,7 +18,7 @@ class TodoListContainer extends Component {
 
 const mapStateToProps = store => {
   return {
-    items: store.items,
+    currentItem: store.currentItem,
   }
 }
 const mapDispatchToProps = dispatch => {

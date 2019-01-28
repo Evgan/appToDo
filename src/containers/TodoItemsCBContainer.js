@@ -5,7 +5,6 @@ import TodoItemsCB from '../components/TodoItemsCB'
 
 class TodoItemsCBContainer extends Component {
   render() {
-    console.log('>> TodoItemsCBContainer.js > render()')
     const { handleDoneAction, deleteItemAction } = this.props
     return (
       <TodoItemsCB
