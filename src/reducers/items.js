@@ -6,9 +6,14 @@ import {
 } from '../actions/DoneActions'
 import { getCurrentItem } from './currentItem'
 
-export const initialState = {
-  items: [],
+function getStateFromLocalStoreg() {
+  //Настроил инициализацию стартового состояния с учётом данных из localStoreg
+  const localStorageItems = window.localStorage.getItem('items')
+  return { items: localStorageItems ? JSON.parse(localStorageItems) : [] }
 }
+
+export const initialState = getStateFromLocalStoreg()
+
 export function itemsReducer(state = initialState, action) {
   switch (action.type) {
     case TASK_ADD:
@@ -22,6 +27,7 @@ export function itemsReducer(state = initialState, action) {
           items: items,
         }
       }
+
       return state
 
     case HANDLE_DONE:

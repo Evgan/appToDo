@@ -35,8 +35,8 @@
  npm i -D redux-logger
  
 
- # Redux
- ============================================================================
+# Redux
+============================================================================
 В рамках данного тестового проекта Redux избыточен, но для изучения его применил
 документация по Redux:
 https://redux.js.org/
@@ -46,6 +46,21 @@ https://maxfarseer.gitbooks.io/redux-course-ru-v2/content/sozdanie/tochka-vhoda.
 npm i redux react-redux --save
 npm install redux-thunk --save //для асихронных actions
 
+
+# Redux-LocalStorage-Simple
+============================================================================
+https://www.npmjs.com/package/redux-localstorage-simple
+npm i -s redux-localstorage-simple
+ПОКА не СМЕКНУЛ КАК ЭТО РАБОТАЕТ
+
+# window.localStorage
+============================================================================
+Изучил как сохранять и забирать данные для storeg из localStorage
+в configStore:
+window.localStorage.setItem('items', JSON.stringify(items.items))
+В соответсвующем reducer:
+const localStorageItems = window.localStorage.getItem('items')
+не забываем про JSON.parse
 
 Что необходимо ещё сделать:
  ============================================================================

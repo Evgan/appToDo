@@ -19,6 +19,7 @@ export function currentItemReducer(state = initialState, action) {
       return { ...state, currentItem: itemDefault }
 
     case INPUT_CH:
+      //window.localStorage.setItem('aaaa', 'bbbbb')
       const itemText = action.payload
       const currentItem = {
         ...state.currentItem,
